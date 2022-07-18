@@ -1,10 +1,33 @@
-const express = require('express')
-const app = express()
+require('dotenv').config({ path: '../.env' });
+const cors = require('cors');
 
-app.get('/', function (req, res) {
-  res.send('project started')
-})
+const express = require('express');
+const app = express();
+const connect = require('./Config/db');
 
-app.listen(5000,()=>{
-    console.log('listening on port 5000')
-})
+
+//routes
+const hotelController = require('./Controllers/Hotel.Controllers');
+
+
+
+app.use(express.json());
+app.use(cors());
+
+
+
+app.use("/hotel",hotelController);
+
+
+
+
+
+const PORT_CONNECT= process.env.PORT;
+app.listen(PORT_CONNECT, async () => {
+  try {
+    await connect();
+    console.log(`listning on port ${PORT_CONNECT}`);
+  } catch (error) {
+    console.log(error.message);
+  }
+});
