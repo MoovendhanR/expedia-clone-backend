@@ -8,7 +8,7 @@ const connect = require('./Config/db');
 
 //routes
 const hotelController = require('./Controllers/Hotel.Controllers');
-
+const userController=require('./Controllers/User.Controllers')
 
 
 app.use(express.json());
@@ -17,6 +17,7 @@ app.use(cors());
 
 
 app.use("/hotel",hotelController);
+app.use("/user",userController);;
 
 
 

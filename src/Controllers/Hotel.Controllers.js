@@ -87,7 +87,6 @@ router.post('', async (req, res) => {
 
 router.get('', async (req, res) => {
   try {
-    // error handling
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
